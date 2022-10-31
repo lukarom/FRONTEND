@@ -138,3 +138,93 @@ for(let propValue of movieRatings){
 
 console.log(totalRating);
 console.log(totalRating/movieRatings.length);
+
+const child = {
+    name: 'Mantas',
+    toysArray: ['doll', 'basketball', 'robocop destructor 200x'],
+    yearsOld: 20,
+    birthday: true,
+    totalToys: null,
+    friends: [
+        {
+            name: 'Tomas',
+            currAction: 'plays PS4'
+        },
+        {
+            name: 'Hanna',
+            currAction: 'plays boardgames'
+        },
+        {
+            name: 'Alice',
+            currAction: 'runs around'
+        },
+    ]
+    
+}
+
+function doBirthdayParty(name) {
+    if (child.name === name && child.birthday){
+        let birthdayToy = child.toysArray.shift();
+        child.toysArray.push('New toy');
+        child.yearsOld = child.yearsOld + 1;
+        child.totalToys = child.toysArray.length;
+
+        console.log(child);
+        for(let friend of child.friends){
+            console.log(`${friend.name}: ${friend.currAction}`);
+        }
+    }
+
+}
+
+doBirthdayParty('Mantas');
+
+//Uzduotis 3
+
+const person = {
+    name: "Rosa",
+    age: 120,
+    alive: false,
+    interests: ["swimming","cards"],
+}
+
+function changeStatus(name)
+{
+person.name = this.name;
+randomAge = Math.floor(Math.random() *100) + 20;
+person.age = randomAge;
+if(randomAge < 100){
+    
+    person.alive = true;
+    person.interests.push('enjoying life');
+}
+console.log(person);
+}
+
+changeStatus('Andrew');
+
+
+const arr = ["I", "study", "JavaScript", "right","now"];
+
+arr.splice(0,3,'Lets','Dance');
+
+console.log(arr.join(' '));
+
+
+let first = ['slice', 'splice', 'concat'];
+
+let second = ['push','pop','shift','unshift']
+
+//'length',7,{subject:'methods'}
+
+//Uzduotis 7
+
+let newArray = first.concat(second);
+newArray.push('length',
+7,
+{subject:'methods'});
+
+console.log(newArray);
+
+
+
