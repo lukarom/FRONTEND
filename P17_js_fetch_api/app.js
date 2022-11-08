@@ -21,7 +21,7 @@ newdata = vehicleList(url);
 console.log(newdata);*/
 
 
-
+//
 
 /*fetch (url, options)
 .then(response => {
