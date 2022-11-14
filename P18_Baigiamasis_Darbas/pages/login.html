@@ -6,26 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Objects</title>
 </head>
-<body>
+  <body>
     <form id="signup">
-        <fieldset form="signup">
+        
       
         <div class="container">
-          <label for="fname"><b> First Name</b></label>
-          <input id="fname" type="text" placeholder="Enter First Name" name="fname" required>
+          <label for="fname"><b>First Name</b></label>
+          <input id="fname" type="text" placeholder="Enter First Name" name="fname" >
           <br>
           <label for="lname"><b>Last Name</b></label>
-          <input id="lname" type="password" placeholder="Enter Last Name" name="lname" required >
+          <input id="lname" type="text" placeholder="Enter Last Name" name="lname"  >
         </div>
       
         <div class="container" style="background-color:#f1f1f1">
           <button id="back" type="button" class="cancelbtn">Back</button>
-          <button onclick=saveData() id="login" type="submit">Login</button>
+          <button onclick = login() id="loginmain" type="submit">Login</button>
         </div>
-        </fieldset>
+        
     </form>
 
-      <script src="../script/login.js" defer></script>
-</body>
+  <script src="../script/login.js" defer></script>
+  </body>
 
 </html>
