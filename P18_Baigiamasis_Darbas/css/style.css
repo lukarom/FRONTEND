@@ -1,0 +1,155 @@
+.input,
+.todo-content {
+  border: 1px solid #ccc;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 1px 6px;
+}
+
+.input-wrap {
+  position: relative;
+}
+.input-wrap .input {
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+.width-machine {
+  /*   Sort of a magic number to add extra space for number spinner */
+  padding: 0 1rem;
+}
+
+.todo-content {
+  display: block;
+  overflow: hidden;
+  min-height: 40px;
+  line-height: 20px;
+  padding: 16px 20px;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 100;
+}
+
+.todo-content[contenteditable]:empty::before {
+  
+  color: gray;
+}
+
+/* Just for demo */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Heebo", sans-serif;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+p strong {
+  display: block;
+}
+h1 {
+  border-bottom: 5px solid #9ccc65;
+}
+h2 {
+  border-bottom: 2px solid #c5e1a5;
+}
+
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.create-task {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+ 
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.todo-form {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.todo-form input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.todo-form input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+ .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 100;
+}
+
+.tasktype {
+    
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 100;
+}
+
+ .date {
+  
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 100;
+}
+
+.content{
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 100;
+}
+
+/* Add a red background color to the cancel button */
+.close {
+    background-color: red;
+  }
+
+/* Add some hover effects to buttons */
+.todo-form .btn:hover, .open-button:hover {
+  opacity: 1;
+}
