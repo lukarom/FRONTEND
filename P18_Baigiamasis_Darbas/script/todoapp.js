@@ -108,7 +108,6 @@ function renderTodos(todos) {
         
         <button class="delete-button">X</button>
       `;
-      // finally add the <li> to the <ul>
       todoItemsList.append(li);
 }});
   }
