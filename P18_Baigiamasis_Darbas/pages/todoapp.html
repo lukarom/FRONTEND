@@ -13,32 +13,30 @@
 </head>
 <body>
     <button id = "newTask" class="add" onclick="newTask()">Add Task</button>
-    <div class="container">
 
-    <div class="form-popup" id ="taskForm">
-        <form class="todo-form">
-            <div>Task Type <br><select class="todo-task-type" name="type" id="tasktype" form="tasktype">
+        <form class="form-popup" id ="taskForm" name="taskForm">
+            <placeholder name="fname" id="fname"><script>currentuser.fname</script></placeholder>
+            <placeholder name="lname" id="lname"><script>currentuser.lname</script></placeholder>
+            <div class="typediv">Task Type </div><br><div class="container"><div class="type"><select id="type" class="todo-task-type" name="type" >
                 <option value="none">None</option>
                 <option value="work">Work</option>
                 <option value="home">Home</option>
                 <option value="leisure">Leisure</option>
                 <option value="other">Other</option>
-            </select></div>
-        
-        
-            <div >Task Content <span  class="todo-content" name ="content" role="textbox" contenteditable></span></div>
-            
-            <div><label for="enddate">End Date</label>
+            </select></div></div>
             <br>
-            <input class = "todo-end-date" type="date" id="enddate" name="endDate"></div> 
+            <div class="contenttitle">Task Content </div> <div class="content"><span  name="content" id="content" class="todo-content" role="textbox" contenteditable></span></div>
+            <div class="datetitle"><label for="enddate">End Date</label></div>
+            <br>
+            <div class="datediv"><input class ="todo-end-date" type="date" id="enddate" name="enddate"></div> 
         
-            <button id="createTask" type="submit" class= "btncreate" >Create</button>
+            <button id="createTask" type="submit" class= "btn create" name="createTask" >Create</button>
             
             <button class="btn close" onclick="close()"> Close </button>
             
         </form>
         
-                </div>
+            
         <script>
             function newTask() {
               document.getElementById("taskForm").style.display = "block";
@@ -48,6 +46,7 @@
             function editTask() {
               document.getElementById("taskForm").style.display = "block";
               document.getElementById("newTask").style.display = "none";
+              
             }
             
             function close() {
@@ -57,11 +56,8 @@
         <ul class="todo-items">
           
         </ul>
-    </div>
 
     <script src="../script/todoapp.js" defer></script>
-
-    
 
 </body>
 </html>
