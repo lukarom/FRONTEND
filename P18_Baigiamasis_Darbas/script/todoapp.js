@@ -1,173 +1,194 @@
-document.getElementById("logout").onclick = function(){window.location.href = "mainpage.html"}
+document.getElementById("logout").onclick = function () {
+  window.location.href = "mainpage.html";
+};
 
-var currentUser = JSON.parse(localStorage.getItem('currentUser'))
+var currentUser = JSON.parse(localStorage.getItem("currentUser"));
 console.log(currentUser);
-document.getElementById('currentuser').append(currentUser.fname + " " + currentUser.lname); 
+document
+  .getElementById("currentuser")
+  .append(currentUser.fname + " " + currentUser.lname);
 
-
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
 function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-  // Close the dropdown menu if the user clicks outside of it
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+window.onclick = function (event) {
+  if (!event.target.matches(".dropbtn")) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains("show")) {
+        openDropdown.classList.remove("show");
       }
     }
   }
-  
+};
 
- // select everything
-// select the todo-form
-const todoForm = document.querySelector('.todo-form');
-// select the input box
-const todoTaskType = document.querySelector('.todo-task-type');
-const todoContent = document.querySelector('.todo-content');
-const todoEndDate = document.querySelector('.todo-end-date');
+const todoForm = document.querySelector(".todo-form");
 
-// select the <ul> with class="todo-items"
-const todoItemsList = document.querySelector('.todo-items');
+const todoTaskType = document.querySelector(".todo-task-type");
+const todoContent = document.querySelector(".todo-content");
+const todoEndDate = document.querySelector(".todo-end-date");
 
-// array which stores every todos
+const todoItemsList = document.querySelector(".todo-items");
+
 let todos = [];
 
-// add an eventListener on form, and listen for submit event
-todoForm.addEventListener('submit', function(event) {
-    // prevent the page from reloading when submitting the form
-    event.preventDefault();
-    addTodo(todoTaskType.value); // call addTodo function with input box current value
-  });
+createTask = document.getElementById("createTask");
+
+createTask.addEventListener("click", function (event) {
+  event.preventDefault();
+  addTodo(todoTaskType.value, todoContent.value, todoEndDate.value);
+});
 
 // function to add todo
 function addTodo(type, content, endDate) {
-    // if item is not empty
-    if (type != '' && content != ''  && endDate != '') {
-      
-        
-        // make a todo object, which has type, content, and endDate
-      
-        currentUser
-      const todo = {
-        fname: currentUser.fname,
-        lname: currentUser.lname,
-        id: Date.now(),
-        type: todoTaskType.options[todoTaskType.selectedIndex].value,
-        content: todoContent.textContent,
-        endDate: todoEndDate.value,
-        completed: false
-      };
-  // then add it to todos array
-      todos.push(todo);
-      addToLocalStorage(todos) // then renders them between <ul>
-  // finally clear the input box value
-    todoTaskType.value = '';
-    todoContent.textContent = '';
-    todoEndDate.value = '';
-      
-    }
+  // if item is not empty
+  if (type != "" && content != "" && endDate != "") {
+    currentUser;
+    const todo = {
+      fname: currentUser.fname,
+      lname: currentUser.lname,
+      id: Date.now(),
+      type: todoTaskType.options[todoTaskType.selectedIndex].value,
+      content: todoContent.textContent,
+      endDate: todoEndDate.value,
+      completed: false,
+    };
+    todos.push(todo);
+    addToLocalStorage(todos);
+    todoTaskType.value = "";
+    todoContent.textContent = "";
+    todoEndDate.value = "";
   }
+}
 
-  // function to render given todos to screen
 function renderTodos(todos) {
-    // clear everything inside <ul> with class=todo-items
-    todoItemsList.innerHTML = '';
-  // run through each item inside todos
-    todos.forEach(function(item) {
-      // check if the item is completed
-      const checked = item.completed ? 'checked': null;
-  // make a <li> element and fill it
-      // <li> </li>
-      const li = document.createElement('li');
-      // <li class="item"> </li>
-      li.setAttribute('class', 'content');
-      // <li class="item" data-key="20200708"> </li>
-      li.setAttribute('data-key', item.id);
-      /* <li class="item" data-key="20200708"> 
-            <input type="checkbox" class="checkbox">
-            Go to Gym
-            <button class="delete-button">X</button>
-          </li> */
-      // if item is completed, then add a class to <li> called 'checked', which will add line-through style
-      if (item.completed === true) {
-        li.classList.add('checked');
-      }
-      if (item.fname == currentUser.fname && item.lname == currentUser.lname){
-  li.innerHTML = `
+  todoItemsList.innerHTML = "";
+  todos.forEach(function (item) {
+    const checked = item.completed ? "checked" : null;
+    const li = document.createElement("li");
+    li.setAttribute("class", "content");
+    li.setAttribute("data-key", item.id);
+    if (item.completed === true) {
+      li.classList.add("checked");
+    }
+    if (item.fname == currentUser.fname && item.lname == currentUser.lname) {
+      li.innerHTML = `
         <input type="checkbox" class="checkbox" ${checked}>
         ${item.type}
         ${item.content}
         ${item.endDate}
-        
+
+        <button class="edit-button">Edit</button>
         <button class="delete-button">X</button>
       `;
       todoItemsList.append(li);
-}});
-  }
-
-  
-  // function to add todos to local storage
-function addToLocalStorage(todos) {
-    // conver the array to string then store it.
-    localStorage.setItem('todos', JSON.stringify(todos));
-    // render them to screen
-    renderTodos(todos);
-  }
-
-
-
-
-  // function helps to get everything from local storage
-function getFromLocalStorage() {
-    const reference = localStorage.getItem('todos');
-    // if reference exists
-    if (reference) {
-      // converts back to array and store it in todos array
-      todos = JSON.parse(reference);
-      renderTodos(todos);
-    }
-  }
-
-  // toggle the value to completed and not completed
-function toggle(id) {
-    todos.forEach(function(item) {
-      if (item.id == id) {
-        // toggle the value
-        item.completed = !item.completed;
-      }
-    });
-  addToLocalStorage(todos);
-  }
-
-// deletes a todo from todos array, then updates localstorage and renders updated list to screen
-function deleteTodo(id) {
-    // filters out the <li> with the id and updates the todos array
-    todos = todos.filter(function(item) {
-      // use != not !==, because here types are different. One is number and other is string
-      return item.id != id;
-    });
-  // update the localStorage
-    addToLocalStorage(todos);
-  }
-  // initially get everything from localStorage
-  getFromLocalStorage();
-  // after that addEventListener <ul> with class=todoItems. Because we need to listen for click event in all delete-button and checkbox
-  todoItemsList.addEventListener('click', function(event) {
-    // check if the event is on checkbox
-    if (event.target.type === 'checkbox') {
-      // toggle the state
-      toggle(event.target.parentElement.getAttribute('data-key'));
-    }
-  // check if that is a delete-button
-    if (event.target.classList.contains('delete-button')) {
-      // get id from data-key attribute's value of parent <li> where the delete-button is present
-      deleteTodo(event.target.parentElement.getAttribute('data-key'));
     }
   });
+}
+
+function addToLocalStorage(todos) {
+  localStorage.setItem("todos", JSON.stringify(todos));
+  renderTodos(todos);
+}
+
+function getFromLocalStorage() {
+  const reference = localStorage.getItem("todos");
+  if (reference) {
+    todos = JSON.parse(reference);
+    renderTodos(todos);
+  }
+}
+function toggle(id) {
+  todos.forEach(function (item) {
+    if (item.id == id) {
+      item.completed = !item.completed;
+    }
+  });
+  addToLocalStorage(todos);
+}
+
+function deleteTodo(id) {
+  todos = todos.filter(function (item) {
+    return item.id != id;
+  });
+
+  addToLocalStorage(todos);
+}
+
+getFromLocalStorage();
+
+todoItemsList.addEventListener("click", function (event) {
+  if (event.target.type === "checkbox") {
+    toggle(event.target.parentElement.getAttribute("data-key"));
+  }
+  if (event.target.classList.contains("delete-button")) {
+    deleteTodo(event.target.parentElement.getAttribute("data-key"));
+  }
+});
+
+function editTodo(id) {
+  todos = todos.filter(function (item) {
+    return item.id != id;
+  });
+
+  editTask();
+  type = todos.type;
+  content = todos.content;
+  endDate = todos.endDate;
+}
+
+var sortedtodos = todos.sort(function (a, b) {
+  return b.endDate - a.endDate;
+});
+addToLocalStorage(sortedtodos);
+
+getFromLocalStorage();
+
+todoItemsList.addEventListener("click", function (event) {
+  if (event.target.type === "checkbox") {
+    toggle(event.target.getAttribute("data-key"));
+  }
+  if (event.target.classList.contains("edit-button")) {
+    editTodo(event.target.parentElement.getAttribute("data-key"));
+  }
+});
+
+//////////////////////////////////////////////FETCH/////////////////////////////////////
+
+const todoList = document.querySelector(".todo-form");
+const crtTskSbmBtn = document.querySelector(".btncreate");
+
+function sendData() {
+  let data = new FormData(todoList);
+  let obj = {};
+
+  obj["15612"] = "timeValue";
+
+  console.log(data);
+
+  // #1 iteracija -> obj {name: 'asd'}
+  // #2 iteracija -> obj {type: 'asd'}
+  data.forEach((value, key) => {
+    // console.log(`${key}(Key): ${value}(Value)`);
+    obj[key] = value;
+  });
+
+  fetch("https://testapi.io/api/lukarom/resource/TodoList", {
+    method: "post",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    // Naudojame JSON.stringify, nes objekte neturim .json() metodo
+    body: JSON.stringify(obj),
+  })
+    .then((obj) => console.log(obj.json()))
+    .catch((klaida) => console.log(klaida));
+}
+
+crtTskSbmBtn.addEventListener("click", (e) => {
+  e.preventDefault(); // Breaks manual refresh after submit
+  sendData();
+});
