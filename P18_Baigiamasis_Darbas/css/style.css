@@ -31,9 +31,12 @@
   opacity: 100;
 }
 
+
 .todo-content[contenteditable]:empty::before {
   
   color: gray;
+  margin-bottom:10px;
+
 }
 
 /* Just for demo */
@@ -88,9 +91,75 @@ body {font-family: Arial, Helvetica, sans-serif;}
   padding: 10px;
   background-color: white;
 }
+
+
+
+.content{
+    background-color: #ffffff;
+    color: black;
+    text-align: center;
+  border: none;
+  cursor: pointer;
+  width:100%;
+  padding: 10px 10px;
+  opacity: 100;
+}
+
+
+.contenttitle{
+    background-color: #ffffff;
+    color: black;
+    text-align: center;
+  border: none;
+  cursor: pointer;
+  width:100%;
+  padding: 10px 10px;
+  opacity: 100;
+}
+
+.typediv{
+    background-color: #ffffff;
+    color: black;
+    text-align: center;
+  border: none;
+  cursor: pointer;
+  width:100%;
+  padding: 10px 10px;
+  opacity: 100;
+}
+
+.todo-task-type{
+    background-color: #63ada0;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  width:100%;
+  opacity: 100;
+}
+
+.container{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.type{
+    background-color: #63ada0;
+    color: white;
+    text-align: center;
+    align-content: center;
+    border: none;
+    cursor: pointer;
+    width:300px;
+    padding: 20px 20px;
+    opacity: 100;
+}
 /* Set a style for the submit/login button */
  .btn, .create {
-  background-color: #04AA6D;
+  background-color: #409173;
   color: white;
   padding: 16px 20px;
   border: none;
@@ -114,7 +183,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
   padding: 10px 20px;
   border: none;
   cursor: pointer;
+  align-content: center;
   width: 100%;
+  margin: 20px ;
   margin-bottom:10px;
   opacity: 100;
 }
@@ -129,10 +200,45 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Add a red background color to the cancel button */
 .close {
-    background-color: red;
+    background-color: rgb(255, 106, 106);
   }
 
 /* Add some hover effects to buttons */
 .todo-form, .btn:hover, .open-button:hover {
   opacity: 1;
+}
+
+
+.todo-end-date{
+    padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  
+  margin-bottom:10px;
+  opacity: 100;
+}
+
+.datediv{
+    padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  width: auto;
+  
+  margin-bottom:10px;
+  opacity: 100;
+}
+
+.datetitle{
+    color: black;
+    text-align: center;
+    align-content: center;
+    border: none;
+    cursor: pointer;
+
 }
