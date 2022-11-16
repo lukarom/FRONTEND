@@ -1,31 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS Objects</title>
-</head>
-<body>
-    <form >
-      
-        <div class="container">
-          <label for="fname"><b> First Name</b></label>
-          <input id="fname" type="text" placeholder="Enter First Name" name="fname" required>
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/style.css">
+        <title>JS Objects</title>
+      </head>
+      <body>
+        <form >
+          
+            <div class="fname">
+              <label for="fname"><b> First Name</b></label>
+              <input id="fname" type="text" placeholder="Enter First Name" name="fname" required>
+            </div>
+            <br>
+            <div class="lname">
+              <label for="lname"><b>Last Name</b></label>
+              <input id="lname" type="text" placeholder="Enter Last Name" name="lname" required >
+              </div>
+              <br>
+              <div class="email">
+              <label for=""><b>Email</b></label>
+              <input id="email" type="email" placeholder="Enter Email" name="email" required >
+            </div>
           <br>
-          <label for="lname"><b>Last Name</b></label>
-          <input id="lname" type="text" placeholder="Enter Last Name" name="lname" required >
-          <br>
-          <label for=""><b>Email</b></label>
-          <input id="email" type="text" placeholder="Enter Email" name="email" required >
-        </div>
-      
-        <div class="container" style="background-color:#f1f1f1">
-          <button id="back" type="button" class="cancelbtn">Back</button>
-          <button onclick = saveData() id="registermain" type="submit">Register</button>
-        </div>
-      </form>
+            <div class="email" style="background-color:#ffffff">
+              <button id="back" type="button" class="cancelbtn">Back</button>
+              <button onclick = saveData() id="registermain" type="submit">Register</button>
+            </div>
+          </form>
 
-  <script src="../script/register.js" defer></script>
-</body>
-</html>
+      <script src="../script/register.js" defer></script>
+      </body>
+      </html>

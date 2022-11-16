@@ -15,7 +15,7 @@
   left: 0;
 }
 .width-machine {
-  /*   Sort of a magic number to add extra space for number spinner */
+  
   padding: 0 1rem;
 }
 
@@ -39,13 +39,9 @@
 
 }
 
-/* Just for demo */
-* {
-  box-sizing: border-box;
-}
 body {
   font-family: "Heebo", sans-serif;
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -54,10 +50,29 @@ p strong {
   display: block;
 }
 h1 {
-  border-bottom: 5px solid #9ccc65;
+    align-items: center;
+  border-bottom: 5px solid #44b886;
+  text-align: center;
 }
 h2 {
-  border-bottom: 2px solid #c5e1a5;
+  border-bottom: 2px solid #44b886;
+  text-align: center;
+}
+
+.currentuser {
+    width: 100px;
+    margin-left: 30px;
+}
+
+.logout{
+    background-color: #409173;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 100;
 }
 
 body {font-family: Arial, Helvetica, sans-serif;}
@@ -73,7 +88,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   opacity: 0.8;
   bottom: 23px;
   right: 28px;
-  width: 280px;
+  width: 100%;
 }
 
 /* The popup form - hidden by default */
@@ -101,6 +116,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   border: none;
   cursor: pointer;
   width:100%;
+  list-style-type: none;
   padding: 10px 10px;
   opacity: 100;
 }
@@ -210,20 +226,18 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 
 .todo-end-date{
-    padding: 10px 20px;
-  border: none;
+
+  border: 10px;
   cursor: pointer;
   align-items: center;
   text-align: center;
-  width: 100%;
-  
-  margin-bottom:10px;
+  width: 50%;
   opacity: 100;
 }
 
 .datediv{
-    padding: 10px 20px;
-  border: none;
+padding: 10px 20px;
+  border: 10px;
   cursor: pointer;
   align-items: center;
   align-content: center;
@@ -242,3 +256,34 @@ body {font-family: Arial, Helvetica, sans-serif;}
     cursor: pointer;
 
 }
+
+.login {
+    background-color: #3d8174;
+    color: white;
+    text-align: center;
+    align-content: center;
+    border: none;
+    cursor: pointer;
+    width:300px;
+    padding: 20px 20px;
+    opacity: 100;
+}
+
+.register {
+    background-color: #587fba;
+    color: white;
+    text-align: center;
+    align-self:  center;
+    border: none;
+    cursor: pointer;
+    width:300px;
+    padding: 20px 20px;
+    opacity: 100;
+}
+
+.mainbtn{
+    align-items: center;
+    margin-left: 30px;
+}
+
+

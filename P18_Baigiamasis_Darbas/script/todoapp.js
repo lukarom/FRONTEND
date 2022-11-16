@@ -27,7 +27,6 @@ window.onclick = function (event) {
 };
 
 const todoForm = document.querySelector(".todo-form");
-
 const todoTaskType = document.querySelector("#type");
 const todoContent = document.querySelector("#content");
 const todoEndDate = document.querySelector("#enddate");
@@ -36,11 +35,9 @@ const todoItemsList = document.querySelector(".todo-items");
 
 let todos = [];
 
-createTask = document.getElementById("createTask");
-
 createTask.addEventListener("click", function (event) {
-  event.preventDefault();
-  addTodo(todoTaskType.value, todoContent.value, todoEndDate.value);
+    event.preventDefault();
+    addTodo(todoTaskType.value, todoContent.value, todoEndDate.value);
 });
 
 // function to add todo
@@ -69,7 +66,7 @@ function renderTodos(todos) {
   todoItemsList.innerHTML = "";
   todos.forEach(function (item) {
     const checked = item.completed ? "checked" : null;
-    const li = document.createElement("li");
+      const li = document.createElement("li");
     li.setAttribute("class", "content");
     li.setAttribute("data-key", item.id);
     if (item.completed === true) {
@@ -81,7 +78,6 @@ function renderTodos(todos) {
         ${item.type}
         ${item.content}
         ${item.endDate}
-
         <button id="editButton" class="edit-button">Edit</button>
         <button class="delete-button">X</button>
       `;
