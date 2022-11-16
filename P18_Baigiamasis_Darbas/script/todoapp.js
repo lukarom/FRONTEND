@@ -40,7 +40,6 @@ createTask.addEventListener("click", function (event) {
     addTodo(todoTaskType.value, todoContent.value, todoEndDate.value);
 });
 
-// function to add todo
 function addTodo(type, content, endDate) {
   // if item is not empty
   if (type != "" && content != "" && endDate != "") {
@@ -162,15 +161,12 @@ todoItemsList.addEventListener("click", function (event) {
 
 //////////////////////////////////////////////FETCH/////////////////////////////////////
 
-
-
 //#region sendData() fetch to API  
 const todotasks = document.querySelector("#taskForm");
 const crtTskSbmBtn = document.querySelector("#createTask");
 console.log(todotasks);
 
 function sendData() {
-
     const data = new FormData();
     data.append("fname", currentUser.fname);
     data.append("lname", currentUser.lname);
@@ -180,10 +176,6 @@ function sendData() {
     data.append("endtime", todoEndDate.value);
     data.append("completed", "false" )
 
-    
-  for (var pair of data.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-  }
   let obj = {};
 
    data.forEach((value, key) => {
@@ -210,56 +202,4 @@ crtTskSbmBtn.addEventListener("click", (e) => {
    // Breaks manual refresh after submit
     sendData();
 });
-//#endregion
-
-//#region updateData() when the Task is edited or a different user logged in tasks should be downloaded from API
-const todolistupdbtn = document.querySelector("#createTask");
-
-function updateData() {
-    let data = new FormData();
-    data.append("fname", currentUser.fname);
-    data.append("lname", currentUser.lname);
-    data.append("id", Date.now());
-    data.append("type", todoTaskType.options[todoTaskType.selectedIndex].value );
-    data.append("content", todoContent.textContent);
-    data.append("endtime", todoEndDate.value);
-    data.append("completed", "false")
-    
-    let obj = {};
-
-    // #1 iteracija -> obj {name: 'asd'}
-    // #2 iteracija -> obj {type: 'asd'}
-    data.forEach((value, key) => {
-        // console.log(`${key}(Key): ${value}(Value)`);
-        obj[key] = value
-    });
-
-    const url = 'https://testapi.io/api/lukarom/resource/todolist' + obj.id;
-
-    fetch(url, {
-        method: 'put',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        },
-        // Naudojame JSON.stringify, nes objekte neturim .json() metodo
-        body: JSON.stringify(obj) 
-    })
-    .then(obj => {
-        const res = obj.json()
-        console.log(res);
-        return res;
-    })
-    .catch((klaida) => console.log(klaida));
-}
-
-todolistupdbtn.addEventListener('click', (e) => {
-    e.preventDefault(); // Breaks manual refresh after submit
-    updateData();
-})
-
-
-
-
-
 //#endregion
