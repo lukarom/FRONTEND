@@ -1,14 +1,12 @@
+//#region page functionality
 document.getElementById("logout").onclick = function () {
   window.location.href = "mainpage.html";
 };
 
 var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-console.log(currentUser);
 document
   .getElementById("currentuser")
-    .append(currentUser.fname + " " + currentUser.lname);
-  
-
+  .append(currentUser.fname + " " + currentUser.lname);
 
 function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
@@ -25,6 +23,9 @@ window.onclick = function (event) {
     }
   }
 };
+//#endregion
+
+//#region addTodo()
 
 const todoForm = document.querySelector(".todo-form");
 const todoTaskType = document.querySelector("#type");
@@ -36,8 +37,8 @@ const todoItemsList = document.querySelector(".todo-items");
 let todos = [];
 
 createTask.addEventListener("click", function (event) {
-    event.preventDefault();
-    addTodo(todoTaskType.value, todoContent.value, todoEndDate.value);
+  event.preventDefault();
+  addTodo(todoTaskType.value, todoContent.value, todoEndDate.value);
 });
 
 function addTodo(type, content, endDate) {
@@ -61,11 +62,15 @@ function addTodo(type, content, endDate) {
   }
 }
 
+//#endregion
+
+//#region renderTodo()
+
 function renderTodos(todos) {
   todoItemsList.innerHTML = "";
   todos.forEach(function (item) {
     const checked = item.completed ? "checked" : null;
-      const li = document.createElement("li");
+    const li = document.createElement("li");
     li.setAttribute("class", "content");
     li.setAttribute("data-key", item.id);
     if (item.completed === true) {
@@ -77,14 +82,16 @@ function renderTodos(todos) {
         ${item.type}
         ${item.content}
         ${item.endDate}
-        <button id="editButton" class="edit-button">Edit</button>
+        <button id="editButton" class="edit-button" onclick = newTask()>Edit</button>
         <button class="delete-button">X</button>
       `;
       todoItemsList.append(li);
     }
   });
 }
+//#endregion
 
+//#region localStorage functions
 function addToLocalStorage(todos) {
   localStorage.setItem("todos", JSON.stringify(todos));
   renderTodos(todos);
@@ -105,6 +112,9 @@ function toggle(id) {
   });
   addToLocalStorage(todos);
 }
+//#endregion
+
+//#region deleteTodo()
 
 function deleteTodo(id) {
   todos = todos.filter(function (item) {
@@ -125,30 +135,26 @@ todoItemsList.addEventListener("click", function (event) {
   }
 });
 
+//#endregion
+
+//#region editTodo()
 function editTodo(id) {
   todos = todos.filter(function (item) {
     return item.id != id;
   });
-    let editButton = document.getElementById("createTask");
+ let editButton = document.getElementById("createTask");
     editButton.innerHTML = "Edit";
-    editButton.id = "editButton";
+    editButton.id = "editButtons";
     editButton.name = "editButton";
-    document.getElementById("taskForm").style.display = "none";
-    editButton.onclick = editTask();
-    
-    
-  
+    //editButton.onclick = newTask();
+
   type = todos.type;
   content = todos.content;
   endDate = todos.endDate;
 }
 
-var sortedtodos = todos.sort(function (a, b) {
-  return b.endDate - a.endDate;
-});
-addToLocalStorage(sortedtodos);
-
 getFromLocalStorage();
+
 
 todoItemsList.addEventListener("click", function (event) {
   if (event.target.type === "checkbox") {
@@ -158,37 +164,36 @@ todoItemsList.addEventListener("click", function (event) {
     editTodo(event.target.parentElement.getAttribute("data-key"));
   }
 });
+//#endregion
 
 //////////////////////////////////////////////FETCH/////////////////////////////////////
 
-//#region sendData() fetch to API  
+//#region sendData() fetch to API
 const todotasks = document.querySelector("#taskForm");
 const crtTskSbmBtn = document.querySelector("#createTask");
 console.log(todotasks);
-
+console.log(crtTskSbmBtn);
 function sendData() {
-    const data = new FormData();
-    data.append("fname", currentUser.fname);
-    data.append("lname", currentUser.lname);
-    data.append("id", Date.now());
-    data.append("type", todoTaskType.options[todoTaskType.selectedIndex].value );
-    data.append("content", todoContent.textContent);
-    data.append("endtime", todoEndDate.value);
-    data.append("completed", "false" )
+  const data = new FormData();
+  data.append("fname", currentUser.fname);
+  data.append("lname", currentUser.lname);
+  data.append("id", Date.now());
+  data.append("type", todoTaskType.options[todoTaskType.selectedIndex].value);
+  data.append("content", todoContent.textContent);
+  data.append("endtime", todoEndDate.value);
+  data.append("completed", "false");
 
   let obj = {};
 
-   data.forEach((value, key) => {
-      obj[key] = value;
-     console.log(obj);
-   });
-    
-    
-    fetch('https://testapi.io/api/lukarom/resource/todolist', {
-    method: 'post',
+  data.forEach((value, key) => {
+    obj[key] = value;
+  });
+
+  fetch("https://testapi.io/api/lukarom/resource/todolist", {
+    method: "post",
     headers: {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
     },
     // Naudojame JSON.stringify, nes objekte neturim .json() metodo
     body: JSON.stringify(obj),
@@ -198,8 +203,9 @@ function sendData() {
 }
 
 crtTskSbmBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-   // Breaks manual refresh after submit
-    sendData();
+    console.log("fetchdata")
+  e.preventDefault();
+  // Breaks manual refresh after submit
+  sendData();
 });
 //#endregion

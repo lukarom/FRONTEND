@@ -30,7 +30,7 @@
             <br>
             <div class="datediv"><input class ="todo-end-date" type="date" id="enddate" name="enddate"></div> 
         
-            <button id="createTask" type="submit" class= "btn create" name="createTask" onclick="submit()">Create</button>
+            <button id="createTask" type="submit" class= "btn create" name="createTask">Create</button>
             
             <button class="btn close" onclick="close()"> Close </button>
             
@@ -55,7 +55,7 @@
               document.getElementById("taskForm").style.display = "none";
             }
             function submit(){
-                document.getElementById("taskForm").style.display = "block";
+                document.getElementById("taskForm").style.display = "none";
                 event.preventDefault();
             }
         </script>
